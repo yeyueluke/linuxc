@@ -41,7 +41,8 @@ readagain:
     if (ret == -1) {
         if (errno == EINTR) {
             goto readagain;
-        } else if (errno == ECONNRESET) {
+        } else if (errno == EWOULDBLOCK || errno == EAGAIN) {
+            return ret;
         } else {
             perror_exit("read failed");
         }
@@ -56,7 +57,8 @@ writeagain:
     if (ret == -1) {
         if (errno == EINTR) {
             goto writeagain;
-        } else if (errno == ECONNRESET) {
+        } else if (errno == EWOULDBLOCK || errno == EAGAIN) {
+            return ret;
         } else {
             perror_exit("read failed");
         }

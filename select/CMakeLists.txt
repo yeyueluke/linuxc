@@ -1,0 +1,8 @@
+PROJECT(main) 
+SET(SRC_LIST server.cpp include/wrap.cpp) 
+SET(CMAKE_CXX_COMPILER "clang++") 
+SET(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++ -pthread -Werror -Weverything -Wno-implicit-int-conversion -Wno-deprecated-declarations -Wno-disabled-macro-expansion -Wno-float-equal -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-global-constructors -Wno-exit-time-destructors -Wno-missing-prototypes -Wno-padded -Wno-old-style-cast -Wno-unreachable-code")
+SET(CMAKE_EXE_LINKER_FLAGS "-lc++ -lc++abi") 
+SET(CMAKE_BUILD_TYPE Debug) 
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/) 
+ADD_EXECUTABLE(server ${SRC_LIST})

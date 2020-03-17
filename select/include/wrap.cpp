@@ -7,31 +7,41 @@ noreturn void perror_exit(const char *err) {
 
 int Socket(int domain, int type, int protocol) {
     int fd = socket(domain, type, protocol);
-    if (fd == -1) { perror_exit("socket"); }
+    if (fd == -1) {
+        perror_exit("socket");
+    }
     return fd;
 }
 
 int Bind(int socket, const struct sockaddr *address, socklen_t address_len) {
     int ret = bind(socket, address, address_len);
-    if (ret == -1) { perror_exit("bind failed"); }
+    if (ret == -1) {
+        perror_exit("bind failed");
+    }
     return ret;
 }
 
 int Listen(int socket, int backlog) {
     int ret = listen(socket, backlog);
-    if (ret == -1) { perror_exit("listen failed"); }
+    if (ret == -1) {
+        perror_exit("listen failed");
+    }
     return ret;
 }
 
 int Accept(int socket, struct sockaddr *addr, socklen_t *addr_len) {
     int fd = accept(socket, addr, addr_len);
-    if (fd == -1) { perror_exit("accept failed"); }
+    if (fd == -1) {
+        perror_exit("accept failed");
+    }
     return fd;
 }
 
 int Connect(int socket, const struct sockaddr *address, socklen_t address_len) {
     int ret = connect(socket, address, address_len);
-    if (ret == -1) { perror_exit("connect failed"); }
+    if (ret == -1) {
+        perror_exit("connect failed");
+    }
     return ret;
 }
 
@@ -41,7 +51,6 @@ readagain:
     if (ret == -1) {
         if (errno == EINTR) {
             goto readagain;
-        } else if (errno == ECONNRESET) {
         } else {
             perror_exit("read failed");
         }
@@ -56,7 +65,6 @@ writeagain:
     if (ret == -1) {
         if (errno == EINTR) {
             goto writeagain;
-        } else if (errno == ECONNRESET) {
         } else {
             perror_exit("read failed");
         }
@@ -67,12 +75,16 @@ writeagain:
 int Setsockopt(int sockfd, int level, int optname, const void *optval,
                socklen_t optlen) {
     int ret = setsockopt(sockfd, level, optname, optval, optlen);
-    if (ret == -1) { perror_exit("setsockopt failed"); }
+    if (ret == -1) {
+        perror_exit("setsockopt failed");
+    }
     return ret;
 }
 
-int Close(int fd) {
+int Close(int fd){ 
     int ret = close(fd);
-    if (ret == -1) { perror_exit("close failed"); }
-    return ret;
-}
+	if (ret==-1) { 
+	    perror_exit("close failed"); 
+	} 
+	return ret;
+} 

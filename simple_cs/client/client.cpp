@@ -28,7 +28,7 @@ int main() {
     struct sockaddr_in sock;
     memset(&sock, 0, sizeof(sock));
     sock.sin_family      = AF_INET;
-    sock.sin_addr.s_addr = inet_addr("192.168.153.132");
+    sock.sin_addr.s_addr = inet_addr("127.0.0.1");
     sock.sin_port        = htons(6666);
 
     ret = connect(fd_client, (struct sockaddr *)&sock, sizeof(sock));
