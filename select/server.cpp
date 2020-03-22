@@ -64,6 +64,8 @@ int main() {
     int nselect = 0;
     int i       = 0;
 
+	printf("sizeof fd_set : %d\n", (int)sizeof(fd_set));
+
     startsock(fd_server, sock_server, LOCALIP, PORT);
     opt = 1;
     Setsockopt(fd_server, SOL_SOCKET, SO_REUSEADDR, &opt,
