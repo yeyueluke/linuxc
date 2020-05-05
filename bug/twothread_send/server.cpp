@@ -31,6 +31,8 @@ void *     athread(void *) {
 
     while (true) {
         ret = write(fd_client, buf, 1000 * 4 * sizeof(myint));
+		//if(ret!=1000*4*sizeof(myint)) printf("athread not sent all\n");
+		printf("athread sent :%d bytes\n", ret);
     }
     sleep(3);
     if (fd_client == 0) {
@@ -54,6 +56,8 @@ void *bthread(void *) {
         for (int i = 0; i < 10; ++i) {
             ret += write(fd_client, buf, 100*sizeof(myint));
         }
+		//if(ret!=1000*sizeof(myint)) printf("bthread not sent all\n");
+		printf("bthread sent :%d bytes\n", ret);
         sleep(1);
     }
     sleep(3);
